@@ -4,7 +4,7 @@ const lscontaner = document.getElementById("ls-contaner");
 const tasks = [
   {
     description: "Task 1",
-    completed: false,
+    completed: true,
     index: 1,
   },
   {
@@ -14,7 +14,7 @@ const tasks = [
   },
   {
     description: "Task 3",
-    completed: false,
+    completed: true,
     index: 3,
   },
 ];

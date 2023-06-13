@@ -40,7 +40,7 @@
   border-radius: 30px;
   padding-left: 20px;
   margin-bottom: 30px;
-  transition: background-color 0.6s ease-in-out;
+  transition: background-color 0.5s ease-in-out;
 }
 
 .row:hover {
@@ -65,7 +65,7 @@
   padding: 15px 50px;
   cursor: pointer;
   border-radius: 30px;
-  transition: background-color 0.6s ease-in-out;
+  transition: background-color 0.4s ease-in-out;
 }
 
 .add-btn:hover {
@@ -117,4 +117,23 @@
 
 .list-contaner li span:hover {
   background: #edeef0;
+  transition: background-color 0.6s ease-in-out;
+}
+
+.Remove-btn {
+  border: none;
+  outline: none;
+  background-color: #df543e;
+  color: #fff;
+  font-size: 16px;
+  padding: 15px 50px;
+  cursor: pointer;
+  border-radius: 30px;
+  transition: background-color 0.4s ease-in-out;
+  width: 100%;
+  margin-top: 40px;
+}
+
+.Remove-btn:hover {
+  background-color: #ffd8ac;
 }
