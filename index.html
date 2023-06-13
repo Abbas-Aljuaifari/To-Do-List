@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>To-Do-list</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="to-do-app">
+        <h2>
+          To Do List
+          <img
+            src="./assets/agenda-notebook-svgrepo-com.svg"
+            alt="to-do-list-icone"
+          />
+        </h2>
+        <div class="row">
+          <input
+            class="my-text"
+            type="text"
+            id="input-box"
+            placeholder="Add your text"
+          />
+          <button onclick="addTask()" class="add-btn" id="my-btn">Add</button>
+        </div>
+        <ul class="list-contaner" id="ls-contaner">
+          <!-- <li class="checked">task 1</li>
+          <li>task 2</li>
+          <li>task 3</li> -->
+        </ul>
+      </div>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
