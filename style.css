@@ -87,7 +87,7 @@
   height: 28px;
   width: 28px;
   border-radius: 50%;
-  background-image: url(./assets/unchecked.png);
+  background-image: url(./properties/unchecked.png);
   background-size: cover;
   background-position: center;
   top: 8px;
@@ -99,7 +99,7 @@
 }
 
 .list-contaner li.checked::before {
-  background-image: url(./assets/checked.png);
+  background-image: url(./properties/checked.png);
 }
 
 .list-contaner li span {
