@@ -27,6 +27,7 @@
   align-items: center;
   margin-bottom: 20px;
 }
+
 .to-do-app img {
   width: 28px;
   margin-left: 70%;
@@ -53,7 +54,6 @@
   outline: none;
   background: transparent;
   padding: 10px;
-  font-weight: 30px;
 }
 
 .add-btn {
@@ -93,6 +93,7 @@
   top: 8px;
   left: 8px;
 }
+
 .list-contaner li.checked {
   color: #555;
   text-decoration: line-through;
