@@ -28,7 +28,7 @@
   margin-bottom: 20px;
 }
 
-.to-do-app img {
+.to-do-app svg {
   width: 28px;
   margin-left: 70%;
 }
@@ -87,7 +87,7 @@
   height: 28px;
   width: 28px;
   border-radius: 50%;
-  background-image: url(./properties/unchecked.png);
+  background-image: url(./asset/unchecked.png);
   background-size: cover;
   background-position: center;
   top: 8px;
@@ -100,7 +100,7 @@
 }
 
 .list-contaner li.checked::before {
-  background-image: url(./properties/checked.png);
+  background-image: url(./asset/checked.png);
 }
 
 .list-contaner li span {
