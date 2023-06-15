@@ -1,83 +1,122 @@
-// Retrieve tasks from local storage or initialize an empty array
+import "./style.css";
 const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
 
-// Function to save tasks in local storage
-function saveTasks() {
+const saveTasks = () => {
   localStorage.setItem("tasks", JSON.stringify(tasks));
-}
+};
 
-// Function to add a new task
-function addTask(description) {
+const addTask = (description) => {
   const newTask = {
-    description: description,
+    description,
     completed: false,
     index: tasks.length + 1,
   };
   tasks.push(newTask);
   saveTasks();
-}
+};
 
-// Function to delete a task
-function deleteTask(index) {
+const deleteTask = (index) => {
   tasks.splice(index, 1);
+  updateIndexes();
+  saveTasks();
+};
+
+const updateIndexes = () => {
   tasks.forEach((task, idx) => {
     task.index = idx + 1;
   });
-  saveTasks();
-}
+};
 
-// Function to edit a task description
-function editTask(index, newDescription) {
-  tasks[index].description = newDescription;
-  saveTasks();
-}
+const editTask = (index, newDescription) => {
+  if (index >= 0 && index < tasks.length) {
+    tasks[index].description = newDescription;
+    saveTasks();
+  }
+};
 
-// Function to display tasks in the HTML
-function displayTasks() {
+const displayTasks = () => {
   const listContainer = document.getElementById("ls-contaner");
   listContainer.innerHTML = "";
 
   tasks.forEach((task, index) => {
     const listItem = document.createElement("li");
-    listItem.innerHTML = `
-      <input type="checkbox" ${
-        task.completed ? "checked" : ""
-      } onchange="toggleComplete(${index})">
-      <span>${task.description}</span>
-      <button onclick="editTaskPrompt(${index})">Edit</button>
-      <button onclick="deleteTask(${index})">Delete</button>
-    `;
+
+    const checkbox = document.createElement("input");
+    checkbox.type = "checkbox";
+    checkbox.checked = task.completed;
+    checkbox.addEventListener("change", () => toggleComplete(index));
+
+    const description = document.createElement("span");
+    description.textContent = task.description;
+    description.addEventListener("dblclick", () => {
+      editTaskDescription(index);
+    });
+
+    const editButton = document.createElement("button");
+    editButton.textContent = "Edit";
+    editButton.addEventListener("click", () => editTaskPrompt(index));
+
+    const deleteButton = document.createElement("button");
+    deleteButton.textContent = "Delete";
+    deleteButton.addEventListener("click", function () {
+      deleteTask(index);
+      displayTasks();
+    });
+
+    listItem.appendChild(checkbox);
+    listItem.appendChild(description);
+    listItem.appendChild(editButton);
+    listItem.appendChild(deleteButton);
+
     listContainer.appendChild(listItem);
   });
-}
+};
 
-// Function to toggle the completion status of a task
-function toggleComplete(index) {
-  tasks[index].completed = !tasks[index].completed;
-  saveTasks();
-}
-
-// Function to prompt the user to edit a task
-function editTaskPrompt(index) {
-  const newDescription = prompt("Enter the new task description:");
-  if (newDescription) {
-    editTask(index, newDescription);
-    displayTasks();
+const toggleComplete = (index) => {
+  if (index >= 0 && index < tasks.length) {
+    tasks[index].completed = !tasks[index].completed;
+    saveTasks();
   }
-}
+};
 
-// Function to clear all completed tasks
-function clearCompleted() {
+const editTaskDescription = (index) => {
+  const listItem = document.querySelectorAll("li")[index];
+  const description = listItem.querySelector("span");
+
+  const input = document.createElement("input");
+  input.type = "text";
+  input.value = description.textContent;
+  input.addEventListener("keyup", (event) => {
+    if (event.key === "Enter") {
+      const newDescription = input.value.trim();
+      if (newDescription) {
+        editTask(index, newDescription);
+        displayTasks();
+      }
+    }
+  });
+  input.addEventListener("blur", () => {
+    const newDescription = input.value.trim();
+    if (newDescription) {
+      editTask(index, newDescription);
+      displayTasks();
+    }
+  });
+
+  listItem.replaceChild(input, description);
+  input.focus();
+};
+
+const clearCompleted = () => {
   for (let i = tasks.length - 1; i >= 0; i--) {
     if (tasks[i].completed) {
       deleteTask(i);
     }
   }
   displayTasks();
-}
+};
 
-// Event listener for the Add button
-document.getElementById("my-btn").addEventListener("click", function () {
+document.getElementById("my-btn").addEventListener("click", () => {
   const inputBox = document.getElementById("input-box");
   const description = inputBox.value.trim();
   if (description) {
@@ -87,8 +126,6 @@ document.getElementById("my-btn").addEventListener("click", function () {
   }
 });
 
-// Event listener for the Clear all completed button
 document.querySelector(".Remove-btn").addEventListener("click", clearCompleted);
 
-// Display the tasks when the page loads
 displayTasks();
