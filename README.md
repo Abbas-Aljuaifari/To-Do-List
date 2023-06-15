@@ -64,7 +64,7 @@ I'm still on going with building the structure to get a professional interface t
 
 ## 🚀 Live Demo <a name="live-demo"></a>
 
-- [Live Demo Link]()
+- [Live Demo Link](https://abbas-aljuaifari.github.io/To-Do-List/)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
