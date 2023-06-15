@@ -28,9 +28,12 @@
   margin-bottom: 20px;
 }
 
-.to-do-app svg {
+.icon {
   width: 28px;
+  height: 28px;
   margin-left: 70%;
+  background-image: url(./asset/agenda.svg);
+  background-size: cover;
 }
 
 .row {
