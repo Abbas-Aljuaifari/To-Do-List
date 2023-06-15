@@ -1,42 +1,94 @@
-import './style.css';
+// Retrieve tasks from local storage or initialize an empty array
+const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
 
-const tasks = [
-  {
-    description: 'Task 1',
-    completed: true,
-    index: 1,
-  },
-  {
-    description: 'Task 2',
-    completed: true,
-    index: 2,
-  },
-  {
-    description: 'Task 3',
-    completed: true,
-    index: 3,
-  },
-];
+// Function to save tasks in local storage
+function saveTasks() {
+  localStorage.setItem("tasks", JSON.stringify(tasks));
+}
 
-function renderTasks() {
-  const lscontaner = document.getElementById('ls-contaner');
-  lscontaner.innerHTML = '';
+// Function to add a new task
+function addTask(description) {
+  const newTask = {
+    description: description,
+    completed: false,
+    index: tasks.length + 1,
+  };
+  tasks.push(newTask);
+  saveTasks();
+}
 
-  tasks.sort((a, b) => a.index - b.index); // Sort tasks by index
+// Function to delete a task
+function deleteTask(index) {
+  tasks.splice(index, 1);
+  tasks.forEach((task, idx) => {
+    task.index = idx + 1;
+  });
+  saveTasks();
+}
 
-  tasks.forEach((task) => {
-    const li = document.createElement('li');
-    li.innerHTML = task.description;
-    if (task.completed) {
-      li.classList.add('completed');
-    }
+// Function to edit a task description
+function editTask(index, newDescription) {
+  tasks[index].description = newDescription;
+  saveTasks();
+}
 
-    const span = document.createElement('span');
-    span.innerHTML = '\u00d7';
-    li.appendChild(span);
+// Function to display tasks in the HTML
+function displayTasks() {
+  const listContainer = document.getElementById("ls-contaner");
+  listContainer.innerHTML = "";
 
-    lscontaner.appendChild(li);
+  tasks.forEach((task, index) => {
+    const listItem = document.createElement("li");
+    listItem.innerHTML = `
+      <input type="checkbox" ${
+        task.completed ? "checked" : ""
+      } onchange="toggleComplete(${index})">
+      <span>${task.description}</span>
+      <button onclick="editTaskPrompt(${index})">Edit</button>
+      <button onclick="deleteTask(${index})">Delete</button>
+    `;
+    listContainer.appendChild(listItem);
   });
 }
 
-document.addEventListener('DOMContentLoaded', renderTasks);
+// Function to toggle the completion status of a task
+function toggleComplete(index) {
+  tasks[index].completed = !tasks[index].completed;
+  saveTasks();
+}
+
+// Function to prompt the user to edit a task
+function editTaskPrompt(index) {
+  const newDescription = prompt("Enter the new task description:");
+  if (newDescription) {
+    editTask(index, newDescription);
+    displayTasks();
+  }
+}
+
+// Function to clear all completed tasks
+function clearCompleted() {
+  for (let i = tasks.length - 1; i >= 0; i--) {
+    if (tasks[i].completed) {
+      deleteTask(i);
+    }
+  }
+  displayTasks();
+}
+
+// Event listener for the Add button
+document.getElementById("my-btn").addEventListener("click", function () {
+  const inputBox = document.getElementById("input-box");
+  const description = inputBox.value.trim();
+  if (description) {
+    addTask(description);
+    inputBox.value = "";
+    displayTasks();
+  }
+});
+
+// Event listener for the Clear all completed button
+document.querySelector(".Remove-btn").addEventListener("click", clearCompleted);
+
+// Display the tasks when the page loads
+displayTasks();
