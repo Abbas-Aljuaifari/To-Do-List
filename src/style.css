@@ -1,0 +1,143 @@
+* {
+  padding: 0;
+  margin: 0;
+  font-family: "poppins", sans-serif;
+  box-sizing: border-box;
+}
+
+.container {
+  width: 100%;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #153677, #4e085f);
+  padding: 10px;
+}
+
+.to-do-app {
+  width: 100%;
+  max-width: 540px;
+  background: white;
+  margin: 100px auto 20px;
+  padding: 40px 30px 70px;
+  border-radius: 5px;
+}
+
+.to-do-app h2 {
+  color: #03276f;
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.icon {
+  width: 28px;
+  height: 28px;
+  margin-left: 70%;
+  background-image: url(./asset/agenda.svg);
+  background-size: cover;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #d7d8db;
+  border-radius: 30px;
+  padding-left: 20px;
+  margin-bottom: 30px;
+  transition: background-color 0.5s ease-in-out;
+}
+
+.row:hover {
+  background-color: #ffa035;
+}
+
+.my-text {
+  flex: 1;
+  border: none;
+  outline: none;
+  background: transparent;
+  padding: 10px;
+}
+
+.add-btn {
+  border: none;
+  outline: none;
+  background-color: #df543e;
+  color: #fff;
+  font-size: 16px;
+  padding: 15px 50px;
+  cursor: pointer;
+  border-radius: 30px;
+  transition: background-color 0.4s ease-in-out;
+}
+
+.add-btn:hover {
+  background-color: #ffd8ac;
+}
+
+.list-contaner li {
+  list-style: none;
+  font-size: 15px;
+  padding: 12px 8px 12px 50px;
+  user-select: none;
+  cursor: pointer;
+  position: relative;
+}
+
+.list-contaner li::before {
+  content: "";
+  position: absolute;
+  height: 28px;
+  width: 28px;
+  border-radius: 50%;
+  background-image: url(./asset/unchecked.png);
+  background-size: cover;
+  background-position: center;
+  top: 8px;
+  left: 8px;
+}
+
+.list-contaner li.checked {
+  color: #555;
+  text-decoration: line-through;
+}
+
+.list-contaner li.checked::before {
+  background-image: url(./asset/checked.png);
+}
+
+.list-contaner li span {
+  position: absolute;
+  right: 5px;
+  top: 7px;
+  width: 30px;
+  height: 30px;
+  font-size: 22px;
+  color: #555;
+  line-height: 29px;
+  text-align: center;
+  border-radius: 50%;
+}
+
+.list-contaner li span:hover {
+  background: #edeef0;
+  transition: background-color 0.6s ease-in-out;
+}
+
+.Remove-btn {
+  border: none;
+  outline: none;
+  background-color: #df543e;
+  color: #fff;
+  font-size: 16px;
+  padding: 15px 50px;
+  cursor: pointer;
+  border-radius: 30px;
+  transition: background-color 0.4s ease-in-out;
+  width: 100%;
+  margin-top: 40px;
+}
+
+.Remove-btn:hover {
+  background-color: #ffd8ac;
+}
