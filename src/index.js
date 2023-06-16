@@ -1,42 +1,79 @@
 import './style.css';
+import TaskList from './modules/taskList.js';
 
-const tasks = [
-  {
-    description: 'Task 1',
-    completed: true,
-    index: 1,
-  },
-  {
-    description: 'Task 2',
-    completed: true,
-    index: 2,
-  },
-  {
-    description: 'Task 3',
-    completed: true,
-    index: 3,
-  },
-];
+const taskList = new TaskList();
 
-function renderTasks() {
-  const lscontaner = document.getElementById('ls-contaner');
-  lscontaner.innerHTML = '';
+const displayTasks = () => {
+  const listContainer = document.getElementById('ls-contaner');
+  listContainer.innerHTML = '';
 
-  tasks.sort((a, b) => a.index - b.index); // Sort tasks by index
+  taskList.tasks.forEach((task, index) => {
+    const listItem = document.createElement('li');
+    listItem.className = 'task-item';
 
-  tasks.forEach((task) => {
-    const li = document.createElement('li');
-    li.innerHTML = task.description;
-    if (task.completed) {
-      li.classList.add('completed');
-    }
+    const checkbox = document.createElement('input');
+    checkbox.type = 'checkbox';
+    checkbox.checked = task.completed;
+    checkbox.className = 'task-checkbox';
+    checkbox.addEventListener('change', () => taskList.toggleComplete(index));
 
-    const span = document.createElement('span');
-    span.innerHTML = '\u00d7';
-    li.appendChild(span);
+    const description = document.createElement('span');
+    description.textContent = task.description;
+    description.className = 'task-description';
+    description.addEventListener('dblclick', () => {
+      const input = document.createElement('input');
+      input.type = 'text';
+      input.className = 'edit-input';
+      input.value = description.textContent;
+      input.addEventListener('keyup', (event) => {
+        if (event.key === 'Enter') {
+          const newDescription = input.value.trim();
+          if (newDescription) {
+            taskList.editTaskDescription(index, newDescription);
+            displayTasks();
+          }
+        }
+      });
+      input.addEventListener('blur', () => {
+        const newDescription = input.value.trim();
+        if (newDescription) {
+          taskList.editTaskDescription(index, newDescription);
+          displayTasks();
+        }
+      });
 
-    lscontaner.appendChild(li);
+      listItem.replaceChild(input, description);
+      input.focus();
+    });
+
+    const deleteButton = document.createElement('button');
+    deleteButton.className = 'task-delete-button';
+    deleteButton.addEventListener('click', () => {
+      taskList.deleteTask(index);
+      displayTasks();
+    });
+
+    listItem.appendChild(checkbox);
+    listItem.appendChild(description);
+    listItem.appendChild(deleteButton);
+
+    listContainer.appendChild(listItem);
   });
-}
+};
 
-document.addEventListener('DOMContentLoaded', renderTasks);
+document.getElementById('my-btn').addEventListener('click', () => {
+  const inputBox = document.getElementById('input-box');
+  const description = inputBox.value.trim();
+  if (description) {
+    taskList.addTask(description);
+    inputBox.value = '';
+    displayTasks();
+  }
+});
+
+document.querySelector('.Remove-btn').addEventListener('click', () => {
+  taskList.clearCompleted();
+  displayTasks();
+});
+
+displayTasks();

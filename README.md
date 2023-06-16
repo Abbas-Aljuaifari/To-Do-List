@@ -4,7 +4,7 @@
 
   <br/>
 
-  <h3><b>Awesome Books</b></h3>
+  <h3><b>To Do List</b></h3>
 
 </div>
 
@@ -155,6 +155,7 @@ npx eslint .
 - **[ Add more soled animations and transition ]**
 - **[ PC Version ]**
 - **[ Update my showcase section ]**
+- **[ Add backend and make more customer friendly ]**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
