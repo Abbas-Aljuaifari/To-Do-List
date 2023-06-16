@@ -84,6 +84,7 @@
   align-items: center;
   justify-content: space-between;
   padding: 10px;
+  border-bottom: 1px solid #df543e;
 }
 
 .task-checkbox {
@@ -101,9 +102,11 @@
   background-color: #df543e;
 }
 
-.my-input {
+.edit-input {
   border-radius: 10px;
   padding: 5px;
+  background: transparent;
+  border: 1px solid #df543e;
 }
 
 .task-checkbox:checked::after {
