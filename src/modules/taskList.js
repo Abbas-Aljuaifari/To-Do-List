@@ -1,17 +1,18 @@
-import Task from './task.js';
+import Task from "./task.js";
 
 class TaskList {
   constructor() {
-    this.tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+    this.tasks = JSON.parse(localStorage.getItem("tasks")) || [];
   }
 
   saveTasks() {
-    localStorage.setItem('tasks', JSON.stringify(this.tasks));
+    localStorage.setItem("tasks", JSON.stringify(this.tasks));
   }
 
   addTask(description) {
     const newTask = new Task(description);
     this.tasks.push(newTask);
+    this.updateIndexes();
     this.saveTasks();
   }
 
