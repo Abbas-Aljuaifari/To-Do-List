@@ -76,4 +76,15 @@ document.querySelector('.Remove-btn').addEventListener('click', () => {
   displayTasks();
 });
 
+const icon = document.querySelector('.icon');
+
+icon.addEventListener('mouseover', () => {
+  icon.title = 'Click to reload the page';
+});
+
+icon.addEventListener('click', () => {
+  localStorage.removeItem('tasks');
+  window.location.reload();
+});
+
 displayTasks();

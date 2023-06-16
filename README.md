@@ -33,8 +33,8 @@
 
 # 📖 [To Do List] <a name="To Do List"></a>
 
-**[To Do List]** In this project, I'm learning to build a basic website that allows users to add/remove taskes from a list. also used array and objects, added the best practice on how to Use javascript modules and use webpack.
-I'm still on going with building the structure to get a professional interface that presents the work on my projects!
+**[To Do List]** In this project, I'm learning to build a basic website that allows users to add/remove taskes from a list. also used array and objects and classes, added the best practice on how to Use javascript modules ES6 and use webpack.
+I have implemented the website and got it nearly to a professional interface that presents the work on my projects!
 
 ## 🛠 Built With <a name="built-with"></a>
 
