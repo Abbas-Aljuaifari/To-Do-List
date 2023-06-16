@@ -40,24 +40,23 @@ const displayTasks = () => {
 
   tasks.forEach((task, index) => {
     const listItem = document.createElement("li");
+    listItem.className = "task-item";
 
     const checkbox = document.createElement("input");
     checkbox.type = "checkbox";
     checkbox.checked = task.completed;
+    checkbox.className = "task-checkbox";
     checkbox.addEventListener("change", () => toggleComplete(index));
 
     const description = document.createElement("span");
     description.textContent = task.description;
+    description.className = "task-description";
     description.addEventListener("dblclick", () => {
       editTaskDescription(index);
     });
 
-    const editButton = document.createElement("button");
-    editButton.textContent = "Edit";
-    editButton.addEventListener("click", () => editTaskPrompt(index));
-
     const deleteButton = document.createElement("button");
-    deleteButton.textContent = "Delete";
+    deleteButton.className = "task-delete-button";
     deleteButton.addEventListener("click", function () {
       deleteTask(index);
       displayTasks();
@@ -65,7 +64,6 @@ const displayTasks = () => {
 
     listItem.appendChild(checkbox);
     listItem.appendChild(description);
-    listItem.appendChild(editButton);
     listItem.appendChild(deleteButton);
 
     listContainer.appendChild(listItem);
@@ -85,6 +83,7 @@ const editTaskDescription = (index) => {
 
   const input = document.createElement("input");
   input.type = "text";
+  input.className = "my-input";
   input.value = description.textContent;
   input.addEventListener("keyup", (event) => {
     if (event.key === "Enter") {

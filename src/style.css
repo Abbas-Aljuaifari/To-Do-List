@@ -78,50 +78,42 @@
 .list-contaner li {
   list-style: none;
   font-size: 15px;
-  padding: 12px 8px 12px 50px;
-  user-select: none;
+  cursor: pointer;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+.task-checkbox {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid #ccc;
+  outline: none;
   cursor: pointer;
   position: relative;
 }
 
-.list-contaner li::before {
-  content: "";
+.task-checkbox:checked {
+  background-color: #df543e;
+}
+
+.my-input {
+  border-radius: 10px;
+  padding: 5px;
+}
+
+.task-checkbox:checked::after {
+  content: "\2713";
+  color: white;
+  font-size: 14px;
   position: absolute;
-  height: 28px;
-  width: 28px;
-  border-radius: 50%;
-  background-image: url(./asset/unchecked.png);
-  background-size: cover;
-  background-position: center;
-  top: 8px;
-  left: 8px;
-}
-
-.list-contaner li.checked {
-  color: #555;
-  text-decoration: line-through;
-}
-
-.list-contaner li.checked::before {
-  background-image: url(./asset/checked.png);
-}
-
-.list-contaner li span {
-  position: absolute;
-  right: 5px;
-  top: 7px;
-  width: 30px;
-  height: 30px;
-  font-size: 22px;
-  color: #555;
-  line-height: 29px;
-  text-align: center;
-  border-radius: 50%;
-}
-
-.list-contaner li span:hover {
-  background: #edeef0;
-  transition: background-color 0.6s ease-in-out;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .Remove-btn {
@@ -140,4 +132,35 @@
 
 .Remove-btn:hover {
   background-color: #ffd8ac;
+}
+
+.task-delete-button {
+  appearance: none;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 2px solid #ccc;
+  outline: none;
+  cursor: pointer;
+  position: relative;
+  background-color: transparent;
+  top: 1px;
+}
+
+.task-delete-button::after {
+  content: "\00D7";
+  color: #ccc;
+  font-size: 20px;
+  position: absolute;
+  top: 43%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.task-delete-button:hover {
+  background-color: #df543e;
+}
+
+.task-delete-button:hover::after {
+  color: white;
 }
