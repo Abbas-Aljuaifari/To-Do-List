@@ -1,32 +1,32 @@
-import "./style.css";
-import TaskList from "./modules/taskList.js";
+import './style.css';
+import TaskList from './modules/taskList.js';
 
 const taskList = new TaskList();
 
 const displayTasks = () => {
-  const listContainer = document.getElementById("ls-contaner");
-  listContainer.innerHTML = "";
+  const listContainer = document.getElementById('ls-contaner');
+  listContainer.innerHTML = '';
 
   taskList.tasks.forEach((task, index) => {
-    const listItem = document.createElement("li");
-    listItem.className = "task-item";
+    const listItem = document.createElement('li');
+    listItem.className = 'task-item';
 
-    const checkbox = document.createElement("input");
-    checkbox.type = "checkbox";
+    const checkbox = document.createElement('input');
+    checkbox.type = 'checkbox';
     checkbox.checked = task.completed;
-    checkbox.className = "task-checkbox";
-    checkbox.addEventListener("change", () => taskList.toggleComplete(index));
+    checkbox.className = 'task-checkbox';
+    checkbox.addEventListener('change', () => taskList.toggleComplete(index));
 
-    const description = document.createElement("span");
+    const description = document.createElement('span');
     description.textContent = task.description;
-    description.className = "task-description";
-    description.addEventListener("dblclick", () => {
-      const input = document.createElement("input");
-      input.type = "text";
-      input.className = "edit-input";
+    description.className = 'task-description';
+    description.addEventListener('dblclick', () => {
+      const input = document.createElement('input');
+      input.type = 'text';
+      input.className = 'edit-input';
       input.value = description.textContent;
-      input.addEventListener("keyup", (event) => {
-        if (event.key === "Enter") {
+      input.addEventListener('keyup', (event) => {
+        if (event.key === 'Enter') {
           const newDescription = input.value.trim();
           if (newDescription) {
             taskList.editTaskDescription(index, newDescription);
@@ -34,7 +34,7 @@ const displayTasks = () => {
           }
         }
       });
-      input.addEventListener("blur", () => {
+      input.addEventListener('blur', () => {
         const newDescription = input.value.trim();
         if (newDescription) {
           taskList.editTaskDescription(index, newDescription);
@@ -46,9 +46,9 @@ const displayTasks = () => {
       input.focus();
     });
 
-    const deleteButton = document.createElement("button");
-    deleteButton.className = "task-delete-button";
-    deleteButton.addEventListener("click", () => {
+    const deleteButton = document.createElement('button');
+    deleteButton.className = 'task-delete-button';
+    deleteButton.addEventListener('click', () => {
       taskList.deleteTask(index);
       displayTasks();
     });
@@ -61,29 +61,29 @@ const displayTasks = () => {
   });
 };
 
-document.getElementById("my-btn").addEventListener("click", () => {
-  const inputBox = document.getElementById("input-box");
+document.getElementById('my-btn').addEventListener('click', () => {
+  const inputBox = document.getElementById('input-box');
   const description = inputBox.value.trim();
   if (description) {
     taskList.addTask(description);
-    inputBox.value = "";
+    inputBox.value = '';
     displayTasks();
   }
 });
 
-document.querySelector(".Remove-btn").addEventListener("click", () => {
+document.querySelector('.Remove-btn').addEventListener('click', () => {
   taskList.clearCompleted();
   displayTasks();
 });
 
-const icon = document.querySelector(".icon");
+const icon = document.querySelector('.icon');
 
-icon.addEventListener("mouseover", () => {
-  icon.title = "Click to reload the page";
+icon.addEventListener('mouseover', () => {
+  icon.title = 'Click to reload the page';
 });
 
-icon.addEventListener("click", () => {
-  location.reload();
+icon.addEventListener('click', () => {
+  window.location.reload();
 });
 
 displayTasks();
